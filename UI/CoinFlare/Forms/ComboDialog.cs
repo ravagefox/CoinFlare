@@ -7,6 +7,11 @@ namespace CoinFlare
     /// </summary>
     public partial class ComboDialog : Form
     {
+        public ComboBox.ObjectCollection Items => this.comboBox1.Items;
+
+        public object SelectedItem => this.comboBox1.SelectedItem;
+
+
 
         public ComboDialog()
         {

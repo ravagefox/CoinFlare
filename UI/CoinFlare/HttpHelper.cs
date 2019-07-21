@@ -27,20 +27,7 @@ namespace CoinFlare
 
     internal static partial class HttpHelper
     {
-        /// <summary>
-        /// This value is the standard rate at which users will contribute towards
-        /// the contributors divided, and a standard rate to contribute towards
-        /// the software company Crexium.
-        /// </summary>
-        public const float Rate = 0.01f;
-
-        // Replace your wallet keys here as a new contributor...
-        internal const string AuthorXRP = "";
-        internal const string AuthorBTC = "";
-        internal const string AuthorLTC = "";
-        internal const string AuthorETH = "";
-
-        private static readonly WebClient client;
+        private static WebClient client;
 
         #region URLs
 

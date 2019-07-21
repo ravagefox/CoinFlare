@@ -33,79 +33,74 @@ namespace CoinFlare
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(placeBuy);
-            Task.WaitAny(ProcessRequest(s, endCallback));
+            ProcessRequest(s, endCallback);
         }
 
         public static void CreateMarketSell(DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(placeSell);
-            Task.WaitAny(ProcessRequest(s, endCallback));
+            ProcessRequest(s, endCallback);
         }
 
         public static void CreateCryptoData(DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(latest);
-            Task.WaitAny(ProcessRequest(s, endCallback));
+            ProcessRequest(s, endCallback);
         }
 
         public static void CreateBalanceRequest(DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(myBalances);
-            Task.WaitAny(ProcessRequest(s, endCallback));
+            ProcessRequest(s, endCallback);
         }
 
         public static void CreateCancelBuy(DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(cancelBuy);
-            Task.WaitAny(ProcessRequest(s, endCallback));
+            ProcessRequest(s, endCallback);
         }
 
         public static void CreateCancelSell(DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(cancelSell);
-            Task.WaitAny(ProcessRequest(s, endCallback));
+            ProcessRequest(s, endCallback);
         }
 
         public static void CreateQuickBuy(DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(quickBuy);
-            Task.WaitAny(ProcessRequest(s, endCallback));
+            ProcessRequest(s, endCallback);
         }
 
         public static void CreateQuickSell(DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(quickSell);
-            Task.WaitAny(ProcessRequest(s, endCallback));
+            ProcessRequest(s, endCallback);
         }
 
         public static void CreateMyOrderRequest(DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(myOrders);
-            Task.WaitAny(ProcessRequest(s, endCallback));
+            ProcessRequest(s, endCallback);
         }
+        #endregion
 
-
-
-        private static async Task ProcessRequest(StringBuilder s, DynamicEventHandler endMarketBuy)
+        private static void ProcessRequest(StringBuilder s, DynamicEventHandler endCallback)
         {
             var data = GetData(s.ToString());
 
             if (data != null)
             {
-                endMarketBuy?.Invoke(data);
+                endCallback?.Invoke(data);
             }
-
-            await Task.Delay(1);
         }
-
-        #endregion
     }
 }

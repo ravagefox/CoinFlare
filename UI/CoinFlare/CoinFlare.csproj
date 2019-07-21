@@ -37,6 +37,7 @@
     <Compile Include="Controls\CryptoControl.Designer.cs">
       <DependentUpon>CryptoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Crypto.cs" />
     <Compile Include="Forms\ComboDialog.cs">
       <SubType>Form</SubType>
     </Compile>

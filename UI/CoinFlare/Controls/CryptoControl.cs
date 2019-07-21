@@ -52,6 +52,17 @@ namespace CoinFlare.Controls
         }
         #endregion
 
+        public event EventHandler SellClick
+        {
+            add { sellButton.Click += value; }
+            remove { sellButton.Click -= value; }
+        }
+
+        public event EventHandler BuyClick
+        {
+            add { buyButton.Click += value; }
+            remove { buyButton.Click -= value; }
+        }
 
         private readonly Label headerText;
         private readonly Label priceText;
@@ -95,11 +106,11 @@ namespace CoinFlare.Controls
             this.Controls.Add(this.buyButton);
             this.Controls.Add(this.sellButton);
 
-            this.buyButton.Click += new EventHandler(this.OnBuyClick);
-            this.sellButton.Click += new EventHandler(this.OnSellClick);
+            BuyClick += new EventHandler(this.OnBuyClick);
+            SellClick += new EventHandler(this.OnSellClick);
         }
 
-        private void OnSellClick(object sender, EventArgs e)
+        protected virtual void OnSellClick(object sender, EventArgs e)
         {
             using (var numberDialog = new NumberDialog())
             {
@@ -121,7 +132,7 @@ namespace CoinFlare.Controls
             }
         }
 
-        private void OnBuyClick(object sender, EventArgs e)
+        protected virtual void OnBuyClick(object sender, EventArgs e)
         {
             using (var numberDialog = new NumberDialog())
             {
@@ -142,6 +153,15 @@ namespace CoinFlare.Controls
                     });
                 }
             }
+        }
+
+
+        public new void Dispose()
+        {
+            BuyClick -= OnBuyClick;
+            SellClick -= OnSellClick;
+
+            base.Dispose();
         }
 
         private void ShowError(Exception exception)

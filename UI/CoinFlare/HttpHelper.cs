@@ -40,16 +40,6 @@ namespace CoinFlare
         internal const string AuthorLTC = "";
         internal const string AuthorETH = "";
 
-        // TODO: move contributors to a secure database hosted at
-        // Crexium to ensure contributors get their share from users.
-        internal static readonly string[] Contributors = new[]
-        {
-            // Please only insert BTC addresses here.
-            // Please do not remove other contributor addresses either.
-            // Each contributor will be placed on a new line.
-            "1P8yYstqFpdf5voYT71cXeMuLQNytV2ayk",
-        };
-
         private static readonly WebClient client;
 
         #region URLs

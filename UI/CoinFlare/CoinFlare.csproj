@@ -29,6 +29,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contributor.Contributors.cs" />
+    <Compile Include="Contributor.cs" />
     <Compile Include="Controls\CryptoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

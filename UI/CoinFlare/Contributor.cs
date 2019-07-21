@@ -27,6 +27,7 @@ namespace CoinFlare
 
         public string EmailAddress { get; internal set; }
 
+        public string[] Tags { get; internal set; }
 
         public override bool Equals(object obj)
         {

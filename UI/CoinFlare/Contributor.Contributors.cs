@@ -38,6 +38,10 @@ namespace CoinFlare
                     "ME48kkGFoYD7cbsu65jo9xErXEw66PhkS6", // LTC
                 },
                 MemberSince = new DateTime(2019, 07, 18),
+                Tags = new string[]
+                {
+                    "612032584", // XRP Dest Tag
+                },
             },
 
             // Create a new ID

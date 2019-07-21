@@ -15,11 +15,9 @@ namespace CoinFlare
         public UI()
         {
             this.InitializeComponent();
-            this.refreshTimer = new Timer()
-            {
-                Interval = 1000,
-            };
+            this.refreshTimer = new Timer();
             this.refreshTimer.Tick += new EventHandler(OnRefresh);
+            this.refreshTimer.Interval = 10000;
             this.refreshTimer.Start();
 
             comboDialog = new ComboDialog();
@@ -50,7 +48,8 @@ namespace CoinFlare
                 foreach (var token in priceData)
                 {
                     JProperty property = token;
-
+                    
+                    // Update the coin currency
                     var crypto = new Crypto(property.Name, result.prices[property.Name]);
                     var ctrl = this.flowLayoutPanel1.Controls[crypto.ToString()] as CryptoControl;
                     ctrl.Price = crypto.Ask.ToString();

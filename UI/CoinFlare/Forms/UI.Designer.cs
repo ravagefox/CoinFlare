@@ -38,6 +38,8 @@
             this.oPTIONSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hELPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.trackerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cREATETRACKERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +59,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.trackerToolStripMenuItem,
             this.eXITToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
@@ -65,8 +68,9 @@
             // eXITToolStripMenuItem
             // 
             this.eXITToolStripMenuItem.Name = "eXITToolStripMenuItem";
-            this.eXITToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.eXITToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eXITToolStripMenuItem.Text = "EXIT";
+            this.eXITToolStripMenuItem.Click += new System.EventHandler(this.EXITToolStripMenuItem_Click);
             // 
             // aIToolStripMenuItem
             // 
@@ -83,25 +87,25 @@
             // 
             this.enabledToolStripMenuItem.CheckOnClick = true;
             this.enabledToolStripMenuItem.Name = "enabledToolStripMenuItem";
-            this.enabledToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.enabledToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.enabledToolStripMenuItem.Text = "ENABLED";
             // 
             // graphsToolStripMenuItem
             // 
             this.graphsToolStripMenuItem.Name = "graphsToolStripMenuItem";
-            this.graphsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.graphsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.graphsToolStripMenuItem.Text = "GRAPHS";
             // 
             // rulesToolStripMenuItem
             // 
             this.rulesToolStripMenuItem.Name = "rulesToolStripMenuItem";
-            this.rulesToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.rulesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rulesToolStripMenuItem.Text = "RULES";
             // 
             // oPTIONSToolStripMenuItem1
             // 
             this.oPTIONSToolStripMenuItem1.Name = "oPTIONSToolStripMenuItem1";
-            this.oPTIONSToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
+            this.oPTIONSToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.oPTIONSToolStripMenuItem1.Text = "OPTIONS";
             // 
             // hELPToolStripMenuItem
@@ -117,6 +121,21 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(722, 333);
             this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // trackerToolStripMenuItem
+            // 
+            this.trackerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cREATETRACKERToolStripMenuItem});
+            this.trackerToolStripMenuItem.Name = "trackerToolStripMenuItem";
+            this.trackerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.trackerToolStripMenuItem.Text = "TRACKER";
+            // 
+            // cREATETRACKERToolStripMenuItem
+            // 
+            this.cREATETRACKERToolStripMenuItem.Name = "cREATETRACKERToolStripMenuItem";
+            this.cREATETRACKERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cREATETRACKERToolStripMenuItem.Text = "CREATE TRACKER";
+            this.cREATETRACKERToolStripMenuItem.Click += new System.EventHandler(this.CREATETRACKERToolStripMenuItem_Click);
             // 
             // UI
             // 
@@ -148,5 +167,7 @@
         private System.Windows.Forms.ToolStripMenuItem hELPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eXITToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem oPTIONSToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem trackerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cREATETRACKERToolStripMenuItem;
     }
 }

@@ -37,6 +37,18 @@
     <Compile Include="Controls\CryptoControl.Designer.cs">
       <DependentUpon>CryptoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ComboDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ComboDialog.Designer.cs">
+      <DependentUpon>ComboDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputDialog.Designer.cs">
+      <DependentUpon>InputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NumberDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +84,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\CryptoControl.resx">
       <DependentUpon>CryptoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ComboDialog.resx">
+      <DependentUpon>ComboDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputDialog.resx">
+      <DependentUpon>InputDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NumberDialog.resx">
       <DependentUpon>NumberDialog.cs</DependentUpon>

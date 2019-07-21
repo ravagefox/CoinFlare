@@ -44,6 +44,10 @@ namespace CoinFlare
             {
                 walletIdHashSet |= this.WalletIds[i].GetHashCode();
             }
+            for (var i = 0; i < this.Tags.Length; i++)
+            {
+                walletIdHashSet |= this.Tags[i].GetHashCode();
+            }
 
             return this.WalletIds.GetHashCode() +
                       this.EmailAddress.GetHashCode() +

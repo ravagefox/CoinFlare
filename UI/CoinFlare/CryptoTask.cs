@@ -53,8 +53,8 @@ namespace CoinFlare
         }
 
         public static async Task SendPayment(string tokenId,
-                                                                     float contributionAmount,
-                                                                     params Contributor[] contributors)
+            float contributionAmount,
+            params Contributor[] contributors)
         {
             await Task.Run(() =>
             {

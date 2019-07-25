@@ -6,10 +6,10 @@
       <Value Profile="(Default)">https://www.coinspot.com.au</Value>
     </Setting>
     <Setting Name="MyApiKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">f575d17e9d487a8a36ab00302a09626b</Value>
     </Setting>
     <Setting Name="MySecret" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">TBDH2Q3UGMHH7AQ9BNKNVJJ21F7TZ52MDZT1P0WCRCL1RJLHYZ7X2GRHPAN11631AD5D34QUN3C631B8</Value>
     </Setting>
   </Settings>
 </SettingsFile>

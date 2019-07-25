@@ -37,7 +37,7 @@ namespace CoinFlare.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("f575d17e9d487a8a36ab00302a09626b")]
         public string MyApiKey {
             get {
                 return ((string)(this["MyApiKey"]));
@@ -49,7 +49,7 @@ namespace CoinFlare.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("TBDH2Q3UGMHH7AQ9BNKNVJJ21F7TZ52MDZT1P0WCRCL1RJLHYZ7X2GRHPAN11631AD5D34QUN3C631B8")]
         public string MySecret {
             get {
                 return ((string)(this["MySecret"]));

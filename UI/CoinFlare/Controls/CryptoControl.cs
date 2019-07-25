@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using CoinFlare.Properties;
 using Newtonsoft.Json.Linq;
 
 namespace CoinFlare.Controls
@@ -32,16 +34,16 @@ namespace CoinFlare.Controls
             set => this.headerText.Text = value;
         }
 
-        [DefaultValue("0.00")]
+        [DefaultValue(prefixAsk + "$0.00")]
         [Browsable(true)]
-        public string Price
+        public string Ask
         {
-            get => this.priceText.Text.Replace("$", "");
+            get => this.askText.Text.Replace(prefixAsk, "");
             set
             {
                 if (double.TryParse(value, out var result))
                 {
-                    this.priceText.Text = "$" + result.ToString();
+                    this.askText.Text = prefixAsk + result.ToString();
                 }
                 else
                 {
@@ -50,6 +52,73 @@ namespace CoinFlare.Controls
                 }
             }
         }
+
+        [DefaultValue(prefixBid + "0.00")]
+        [Browsable(false)]
+        public string Bid
+        {
+            get => this.bidText.Text.Replace(prefixBid, "");
+            set
+            {
+                if (double.TryParse(value, out var result))
+                {
+                    this.bidText.Text = prefixBid + result.ToString();
+                }
+                else
+                {
+                    throw new InvalidCastException(
+                        "The value specified could not be parsed to a double.");
+                }
+            }
+        }
+
+        [DefaultValue(prefixLast + "0.00")]
+        [Browsable(false)]
+        public string Last
+        {
+            get => this.lastText.Text.Replace(prefixLast, "");
+            set
+            {
+                if (double.TryParse(value, out var result))
+                {
+                    this.lastText.Text = prefixLast + result.ToString();
+                }
+                else
+                {
+                    throw new InvalidCastException(
+                        "The value specified could not be parsed to a double.");
+                }
+            }
+        }
+
+        [Browsable(false)]
+        public new string Name
+        {
+            get { return headerText.Text ?? string.Empty; }
+            set
+            {
+                if (headerText == null) return;
+
+                if (headerText.Text != value)
+                {
+                    headerText.Text = value;
+                }
+            }
+        }
+
+        [Browsable(false)]
+        public new Image BackgroundImage
+        {
+            get { return iconImage.BackgroundImage; }
+            set
+            {
+                if (iconImage.BackgroundImage != value)
+                {
+                    iconImage.BackgroundImage = value;
+                }
+            }
+        }
+
         #endregion
 
         public event EventHandler SellClick
@@ -64,10 +133,14 @@ namespace CoinFlare.Controls
             remove { buyButton.Click -= value; }
         }
 
-        private readonly Label headerText;
-        private readonly Label priceText;
+        private readonly Label headerText, askText, lastText, bidText;
         private readonly Button sellButton, buyButton;
+        private readonly PictureBox iconImage;
 
+
+        private const string prefixBid = "BID: $";
+        private const string prefixLast = "LAST: $";
+        private const string prefixAsk = "ASK: $";
 
 
         public CryptoControl()
@@ -80,9 +153,21 @@ namespace CoinFlare.Controls
                 Width = this.Width,
                 Dock = DockStyle.Top,
             };
-            this.priceText = new Label()
+            this.askText = new Label()
             {
-                Text = "0.00000",
+                Text = prefixAsk + "0.00000",
+                Width = this.Width,
+                Dock = DockStyle.Top,
+            };
+            this.lastText = new Label()
+            {
+                Text = prefixLast + "0.00000",
+                Width = this.Width,
+                Dock = DockStyle.Top,
+            };
+            this.bidText = new Label()
+            {
+                Text = prefixBid + "0.00000", 
                 Width = this.Width,
                 Dock = DockStyle.Top,
             };
@@ -100,11 +185,24 @@ namespace CoinFlare.Controls
                 Height = 25,
                 Dock = DockStyle.Bottom,
             };
+            this.iconImage = new PictureBox()
+            {
+                Width = Height,
+                Height = Height,
+                Dock = DockStyle.Left,
+                BackgroundImage = Resources.placeholder142x142,
+                BackgroundImageLayout = ImageLayout.Zoom,
+            };
 
-            this.Controls.Add(this.priceText);
+            this.Controls.Add(this.bidText);
+            this.Controls.Add(this.lastText);
+            this.Controls.Add(this.askText);
+
             this.Controls.Add(this.headerText);
             this.Controls.Add(this.buyButton);
             this.Controls.Add(this.sellButton);
+
+            this.Controls.Add(this.iconImage);
 
             BuyClick += new EventHandler(this.OnBuyClick);
             SellClick += new EventHandler(this.OnSellClick);
@@ -174,7 +272,12 @@ namespace CoinFlare.Controls
 
         public double GetPrice()
         {
-            return double.Parse(this.Price);
+            return double.Parse(this.Ask);
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

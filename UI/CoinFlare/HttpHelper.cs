@@ -28,8 +28,6 @@ namespace CoinFlare
 
     internal static partial class HttpHelper
     {
-        private static readonly WebClient client;
-
         #region URLs
 
         // Full Access Api Urls
@@ -56,9 +54,12 @@ namespace CoinFlare
         internal static readonly string readonlyMyOpenTransactions = readonlyMyTransactions + "/open";
         internal static readonly string readonlyMySendReceive = readonlyUrl + "/sendreceive";
 
-        private static readonly Dictionary<string, DynamicEventHandler> ClientMessages;
 
         #endregion
+
+        private static readonly Dictionary<string, DynamicEventHandler> ClientMessages;
+        private static readonly WebClient client;
+
 
         static HttpHelper()
         {

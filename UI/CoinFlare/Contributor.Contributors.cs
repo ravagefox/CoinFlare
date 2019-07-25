@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 
 namespace CoinFlare
 {
@@ -30,17 +31,17 @@ namespace CoinFlare
             new Contributor()
             {
                 EmailAddress = "ravagefox@live.com",
-                WalletIds = new string[]
+                WalletIds = new KeyValuePair<string, string>[]
                 {
-                    "rBgnUKAEiFhCRLPoYNPPe3JUWayRjP6Ayg", // XRP
-                    "1P8yYstqFpdf5voYT71cXeMuLQNytV2ayk", // BTC
-                    "0x2f28a5f2c956ab82df4316408f0e59db4af09dc3", // ETH
-                    "ME48kkGFoYD7cbsu65jo9xErXEw66PhkS6", // LTC
+                    new KeyValuePair<string, string>("XRP", "rBgnUKAEiFhCRLPoYNPPe3JUWayRjP6Ayg"),
+                    new KeyValuePair<string, string>("BTC","1P8yYstqFpdf5voYT71cXeMuLQNytV2ayk"),
+                    new KeyValuePair<string, string>("ETH", "0x2f28a5f2c956ab82df4316408f0e59db4af09dc3"),
+                    new KeyValuePair<string, string>("LTC", "ME48kkGFoYD7cbsu65jo9xErXEw66PhkS6"),
                 },
                 MemberSince = new DateTime(2019, 07, 18),
                 Tags = new string[]
                 {
-                    "612032584", // XRP Dest Tag
+                    "612032584",                                                                  // XRP Dest Tag
                 },
             },
 

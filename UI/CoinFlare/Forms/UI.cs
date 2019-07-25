@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Net;
@@ -85,7 +84,7 @@ namespace CoinFlare
                         ctrl.Last = selectedItem.Last.ToString();
                         ctrl.Text = selectedItem.ToString().ToUpper();
 
-                        SetIconImage(ref ctrl, selectedItem);
+                        this.SetIconImage(ref ctrl, selectedItem);
 
                         if (!this.refreshTimer.Enabled)
                             this.refreshTimer.Start();

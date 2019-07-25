@@ -38,6 +38,7 @@
       <DependentUpon>CryptoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Crypto.cs" />
+    <Compile Include="CryptoTask.cs" />
     <Compile Include="Forms\ComboDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +76,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="TaskEx.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

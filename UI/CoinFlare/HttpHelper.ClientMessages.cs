@@ -14,9 +14,8 @@
    other dealings in the software.
 */
 
-using System;
+using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CoinFlare
 {
@@ -108,6 +107,17 @@ namespace CoinFlare
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(myOrders);
+            ProcessRequest(s, endCallback);
+        }
+
+        public static void CreateSendOrder(string coinType, Contributor contributor, float amount, DynamicEventHandler endCallback)
+        {
+            var s = new StringBuilder(sendCoin);
+            s.Append("&cointype=" + coinType);
+            s.Append("&destination=" + contributor.WalletIds.Where(
+                id => id.Key.ToLower() == coinType.ToLower()).FirstOrDefault());
+            s.Append("&amount=" + amount);
+
             ProcessRequest(s, endCallback);
         }
         #endregion

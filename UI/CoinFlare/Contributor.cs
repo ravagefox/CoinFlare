@@ -15,13 +15,14 @@
 */
 
 using System;
+using System.Collections.Generic;
 
 namespace CoinFlare
 {
     [Serializable]
     public partial struct Contributor
     {
-        public string[] WalletIds { get; internal set; }
+        public KeyValuePair<string, string>[] WalletIds { get; internal set; }
 
         public DateTime MemberSince { get; internal set; }
 

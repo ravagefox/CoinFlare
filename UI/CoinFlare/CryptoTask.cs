@@ -37,7 +37,7 @@ namespace CoinFlare
             this.TokenId = coinType;
         }
 
-        public void BeginWait(params Contributor[] contributors)
+        public void PayContributors(params Contributor[] contributors)
         {
             var ca = this.StartAmount - this.FinalAmount;
             ca *= (decimal)percentage;
@@ -45,24 +45,30 @@ namespace CoinFlare
             var ps = this.GetPayees(contributors);
             ca /= ps.Count;
 
-            Task.Run(async () =>
-            {
-                // Wait until the final amount does not equal the starting amount
-                // to process the transaction to all the contributors.
-                await TaskEx.WaitUntil(() => { return FinalAmount != StartAmount; });
+            // Wait until the final amount does not equal the starting amount
+            // to process the transaction to all the contributors.
+            Task.Run(async () => await TaskEx.WaitUntil(() => { return this.FinalAmount != this.StartAmount; }));
 
+            Task.WaitAll(SendPayment(this.TokenId, (float)ca, ps.ToArray()));
+        }
+
+        public static async Task SendPayment(string tokenId,
+                                                                     float contributionAmount,
+                                                                     params Contributor[] contributors)
+        {
+            await Task.Run(() =>
+            {
                 // Send the generous donation to all the contributors
                 // specified.
-                foreach (var payee in ps)
+                foreach (var payee in contributors)
                 {
-                    HttpHelper.CreateSendOrder(this.TokenId, payee, (float)ca, (result) =>
+                    HttpHelper.CreateSendOrder(tokenId, payee, contributionAmount, (result) =>
                     {
                         // Do something with resulting data.
                     });
                 }
             });
         }
-
 
         private List<Contributor> GetPayees(Contributor[] contributors)
         {

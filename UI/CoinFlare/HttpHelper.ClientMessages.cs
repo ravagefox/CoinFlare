@@ -14,6 +14,7 @@
    other dealings in the software.
 */
 
+using System;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,17 +30,25 @@ namespace CoinFlare
         // isn't receiving too much data...
         // <-- END NOTE
 
-        public static void CreateMarketBuy(DynamicEventHandler endCallback)
+        public static void CreateMarketBuy(string coinType, float amount, float buyValue, DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(placeBuy);
+            s.Append("&cointype=" + coinType);
+            s.Append("&amount=" + amount);
+            s.Append("&rate=" + buyValue);
+
             ProcessRequest(s, endCallback);
         }
 
-        public static void CreateMarketSell(DynamicEventHandler endCallback)
+        public static void CreateMarketSell(string coinType, float amount, float sellValue, DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(placeSell);
+            s.Append("&cointype=" + coinType);
+            s.Append("&amount=" + amount);
+            s.Append("&rate=" + sellValue);
+
             ProcessRequest(s, endCallback);
         }
 
@@ -57,31 +66,41 @@ namespace CoinFlare
             ProcessRequest(s, endCallback);
         }
 
-        public static void CreateCancelBuy(DynamicEventHandler endCallback)
+        public static void CreateCancelBuy(string buyId, DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(cancelBuy);
+            s.Append("&id=" + buyId);
+
             ProcessRequest(s, endCallback);
         }
 
-        public static void CreateCancelSell(DynamicEventHandler endCallback)
+        public static void CreateCancelSell(string sellId, DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(cancelSell);
+            s.Append("&id=" + sellId);
+
             ProcessRequest(s, endCallback);
         }
 
-        public static void CreateQuickBuy(DynamicEventHandler endCallback)
+        public static void CreateQuickBuy(string coinType, float amount, DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(quickBuy);
+            s.Append("&coinType=" + coinType);
+            s.Append("&amount=" + amount);
+
             ProcessRequest(s, endCallback);
         }
 
-        public static void CreateQuickSell(DynamicEventHandler endCallback)
+        public static void CreateQuickSell(string coinType, float amount, DynamicEventHandler endCallback)
         {
             // Build the string and create a wait task.
             var s = new StringBuilder(quickSell);
+            s.Append("&cointype=" + coinType);
+            s.Append("&amount=" + amount);
+
             ProcessRequest(s, endCallback);
         }
 
@@ -96,7 +115,6 @@ namespace CoinFlare
         private static void ProcessRequest(StringBuilder s, DynamicEventHandler endCallback)
         {
             var data = GetData(s.ToString());
-
             if (ClientMessages.ContainsKey(s.ToString()))
             {
                 if (data != null)

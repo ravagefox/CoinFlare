@@ -28,7 +28,7 @@ namespace CoinFlare
 
     internal static partial class HttpHelper
     {
-        private static WebClient client;
+        private static readonly WebClient client;
 
         #region URLs
 
@@ -70,6 +70,7 @@ namespace CoinFlare
             }
 
             client.Headers.Clear();
+
             client.Headers.Add("method", "POST");
             client.Headers.Add("key", Settings.Default.MyApiKey);
             client.Headers.Add("sign", secretHash);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -119,6 +120,9 @@ namespace CoinFlare.Controls
             }
         }
 
+        public Dictionary<string, Crypto> SellOrders { get; }
+        public Dictionary<string, Crypto> BuyOrders { get; }
+
         #endregion
 
         public event EventHandler SellClick
@@ -146,6 +150,8 @@ namespace CoinFlare.Controls
         public CryptoControl()
         {
             this.InitializeComponent();
+            this.SellOrders = new Dictionary<string, Crypto>();
+            this.BuyOrders = new Dictionary<string, Crypto>();
 
             this.headerText = new Label
             {
@@ -167,7 +173,7 @@ namespace CoinFlare.Controls
             };
             this.bidText = new Label()
             {
-                Text = prefixBid + "0.00000", 
+                Text = prefixBid + "0.00000",
                 Width = this.Width,
                 Dock = DockStyle.Top,
             };
@@ -212,9 +218,11 @@ namespace CoinFlare.Controls
         {
             using (var numberDialog = new NumberDialog())
             {
+                numberDialog.Text = "Set your price.";
+
                 if (numberDialog.ShowDialog() == DialogResult.OK)
                 {
-                    HttpHelper.CreateMarketSell((result) =>
+                    HttpHelper.CreateMarketSell(Name, (float)numberDialog.Numeric1, (float)numberDialog.Numeric2, (result) =>
                     {
                         if (result is Exception)
                         {
@@ -222,8 +230,6 @@ namespace CoinFlare.Controls
                         }
                         else if (result is JObject)
                         {
-                            Console.WriteLine(result.ToString());
-                            // Do something useful with the data.
                         }
                     });
                 }
@@ -234,10 +240,12 @@ namespace CoinFlare.Controls
         {
             using (var numberDialog = new NumberDialog())
             {
+                numberDialog.Text = "Set your price.";
+
                 if (numberDialog.ShowDialog() == DialogResult.OK)
                 {
-                    var numeric = numberDialog.Numeric;
-                    HttpHelper.CreateMarketBuy((result) =>
+                    var numeric = numberDialog.Numeric1;
+                    HttpHelper.CreateMarketBuy(Name, (float)numberDialog.Numeric1, (float)numberDialog.Numeric2, (result) =>
                     {
                         if (result is Exception)
                         {

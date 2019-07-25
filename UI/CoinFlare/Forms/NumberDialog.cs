@@ -10,8 +10,12 @@ namespace CoinFlare
         /// <summary>
         /// Gets the value that was set by the user.
         /// </summary>
-        public decimal Numeric => this.numericUpDown1.Value;
+        public decimal Numeric1 => this.numericUpDown1.Value;
 
+        /// <summary>
+        /// Gets the second value that was set by the user.
+        /// </summary>
+        public decimal Numeric2 => this.numericUpDown2.Value;
 
         public NumberDialog()
         {

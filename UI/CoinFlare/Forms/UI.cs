@@ -23,6 +23,11 @@ namespace CoinFlare
             this.refreshTimer.Tick += new EventHandler(this.OnRefresh);
             this.refreshTimer.Interval = 10000;
             this.refreshTimer.Start();
+
+            HttpHelper.CreateMyOrderRequest((result) =>
+            {
+                Console.WriteLine(result.ToString());
+            });
         }
 
         private void OnRefresh(object sender, EventArgs e)

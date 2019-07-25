@@ -95,20 +95,21 @@ namespace CoinFlare
 
         private void SetIconImage(ref CryptoControl ctrl, Crypto selectedItem)
         {
-            if (!Directory.Exists("Resources/"))
+            const string resourcePath = "Resources/";
+            if (!Directory.Exists(resourcePath))
             {
                 ctrl.BackgroundImage = Resources.placeholder142x142;
                 return;
             }
 
-            var files = Directory.GetFiles("Resources/");
+            var files = Directory.GetFiles(resourcePath);
             for (var i = 0; i < files.Length; i++)
             {
                 var fName = Path.GetFileName(files[i]);
                 if (string.Compare(fName.ToLower(), selectedItem.ToString().ToLower()) == 0)
                 {
                     var img = Image.FromStream(
-                        File.OpenRead("Resources/" + files[i]));
+                        File.OpenRead(resourcePath + files[i]));
                     ctrl.BackgroundImage = img;
 
                     return;

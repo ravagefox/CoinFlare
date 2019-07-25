@@ -97,9 +97,19 @@ namespace CoinFlare
         {
             var data = GetData(s.ToString());
 
-            if (data != null)
+            if (ClientMessages.ContainsKey(s.ToString()))
             {
-                endCallback?.Invoke(data);
+                if (data != null)
+                {
+                    ClientMessages[s.ToString()]?.Invoke(data);
+                }
+            }
+            else
+            {
+                if (data != null)
+                {
+                    endCallback?.Invoke(data);
+                }
             }
         }
     }

@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -55,6 +56,8 @@ namespace CoinFlare
         internal static readonly string readonlyMyOpenTransactions = readonlyMyTransactions + "/open";
         internal static readonly string readonlyMySendReceive = readonlyUrl + "/sendreceive";
 
+        private static readonly Dictionary<string, DynamicEventHandler> ClientMessages;
+
         #endregion
 
         static HttpHelper()
@@ -70,6 +73,31 @@ namespace CoinFlare
             client.Headers.Add("method", "POST");
             client.Headers.Add("key", Settings.Default.MyApiKey);
             client.Headers.Add("sign", secretHash);
+
+            if (ClientMessages == null)
+            {
+                ClientMessages = new Dictionary<string, DynamicEventHandler>();
+            }
+        }
+
+        public static void CreateClientMessage(string urlCallId, bool overrideExsisting, DynamicEventHandler eventHandler)
+        {
+            if (overrideExsisting)
+            {
+                if (ClientMessages.ContainsKey(urlCallId))
+                    ClientMessages[urlCallId] = eventHandler;
+            }
+            else
+            {
+                if (!ClientMessages.ContainsKey(urlCallId))
+                    ClientMessages.Add(urlCallId, eventHandler);
+            }
+        }
+
+        public static void RemoveMessage(string urlCallId)
+        {
+            if (ClientMessages.ContainsKey(urlCallId))
+                ClientMessages.Remove(urlCallId);
         }
 
         private static string GetHash(string mySecret)
